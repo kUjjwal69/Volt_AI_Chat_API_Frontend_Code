@@ -26,6 +26,7 @@ export class ChatService {
   constructor(private api: ApiService) {
     this.loadSessionsFromStorage();
   }
+  
 
   createNewSession(): ChatSession {
     const session: ChatSession = {
