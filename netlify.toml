@@ -1,6 +1,6 @@
 [build]
   command = "npm run build -- --configuration production"
-  publish = "dist/chat-ui"
+  publish = "dist/chat-ui/browser"
 
 [build.environment]
   NODE_VERSION = "22"
