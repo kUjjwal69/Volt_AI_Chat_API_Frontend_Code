@@ -1,0 +1,52 @@
+<div class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="brand-mark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <span class="brand-text">VoltAI</span>
+    </div>
+
+    <div class="auth-copy">
+      <h1>{{ title() }}</h1>
+      <p>{{ subtitle() }}</p>
+    </div>
+
+    <form class="auth-form">
+      @if (mode() === 'register') {
+        <label class="field">
+          <span>Full Name</span>
+          <input type="text" placeholder="Enter your full name">
+        </label>
+      }
+
+      <label class="field">
+        <span>Email</span>
+        <input type="email" placeholder="Enter your email">
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input type="password" placeholder="Enter your password">
+      </label>
+
+      @if (mode() === 'register') {
+        <label class="field">
+          <span>Confirm Password</span>
+          <input type="password" placeholder="Confirm your password">
+        </label>
+      }
+
+      <button type="button" class="submit-btn">{{ submitLabel() }}</button>
+    </form>
+
+    <div class="auth-switch">
+      <span>{{ alternateText() }}</span>
+      <a [routerLink]="alternateRoute()">{{ alternateLabel() }}</a>
+    </div>
+
+    <a routerLink="/" class="back-link">Back to chat</a>
+  </div>
+</div>

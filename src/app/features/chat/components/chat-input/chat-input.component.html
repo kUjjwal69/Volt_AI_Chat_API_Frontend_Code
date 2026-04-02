@@ -1,0 +1,94 @@
+<div class="input-wrapper">
+  <div class="input-container" [class.loading]="isLoading()">
+    <input
+      #fileInput
+      type="file"
+      multiple
+      class="file-input"
+      accept="image/*,.pdf,.doc,.docx,.txt,.csv,.xlsx,.zip"
+      (change)="onFilesSelected($event)">
+
+    <button
+      class="attach-btn"
+      type="button"
+      [disabled]="isLoading()"
+      (click)="openFilePicker()"
+      title="Add images or files">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+    </button>
+
+    <div class="input-main">
+      @if (selectedFiles.length > 0) {
+        <div class="attachment-list">
+          @for (file of selectedFiles; track file.name + '-' + file.lastModified + '-' + file.size; let i = $index) {
+            <div class="attachment-chip">
+              <div class="attachment-icon" [class.image-icon]="isImage(file)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  @if (isImage(file)) {
+                    <path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
+                    <path d="m4 15 4-4 3 3 5-6 4 5"/>
+                    <circle cx="9" cy="9" r="1"/>
+                  } @else {
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                  }
+                </svg>
+              </div>
+              <div class="attachment-meta">
+                <span class="attachment-name">{{ file.name }}</span>
+                <span class="attachment-size">{{ formatFileSize(file.size) }}</span>
+              </div>
+              <button
+                class="remove-attachment-btn"
+                type="button"
+                (click)="removeFile(i)"
+                title="Remove file">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 6 6 18M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+          }
+        </div>
+      }
+
+      <textarea
+        #textarea
+        [(ngModel)]="message"
+        (keydown)="onKeyDown($event)"
+        (input)="onInput()"
+        placeholder="Message VoltAI..."
+        rows="1"
+        [disabled]="isLoading()"
+        class="chat-textarea">
+      </textarea>
+    </div>
+
+    <div class="input-actions">
+      @if (isLoading()) {
+        <div class="loading-spinner" title="Thinking...">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+          </svg>
+        </div>
+      } @else {
+        <button
+          class="send-btn"
+          [class.active]="canSend"
+          [disabled]="!canSend"
+          (click)="send()"
+          title="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="input-hint">
+    <span>Press <kbd>Enter</kbd> to send &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> for new line</span>
+  </div>
+</div>

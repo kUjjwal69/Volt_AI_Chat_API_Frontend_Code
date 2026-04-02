@@ -1,0 +1,55 @@
+<div class="messages-container" #scrollContainer>
+
+  @if (!hasSession() || messages().length === 0) {
+    <!-- Welcome screen -->
+    <div class="welcome-screen">
+      <div class="welcome-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <h1 class="welcome-title">VoltAI</h1>
+      <p class="welcome-subtitle">Powered by Llama 3.3 · Ultra-fast AI responses</p>
+      <div class="suggestion-chips">
+        <div class="chip-group">
+          <button class="chip" (click)="startWithSuggestion('Explain quantum computing in simple terms')">
+            🔬 Explain quantum computing
+          </button>
+          <button class="chip" (click)="startWithSuggestion('Write a Python function to sort a list')">
+            💻 Write Python code
+          </button>
+          <button class="chip" (click)="startWithSuggestion('What are the best productivity habits?')">
+            ⚡ Productivity tips
+          </button>
+          <button class="chip" (click)="startWithSuggestion('Help me write a professional email')">
+            ✉️ Draft an email
+          </button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <!-- Messages -->
+    <div class="messages-list">
+      @for (msg of messages(); track msg.id) {
+        <app-message-item [message]="msg" />
+      }
+    </div>
+  }
+
+  <!-- Error toast -->
+  @if (error()) {
+    <div class="error-toast">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 8v4M12 16h.01"/>
+      </svg>
+      <span>{{ error() }}</span>
+      <button (click)="dismissError()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  }
+
+</div>

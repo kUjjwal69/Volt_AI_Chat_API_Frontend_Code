@@ -1,0 +1,28 @@
+<div class="app-shell">
+
+  <!-- Sidebar Overlay (mobile) -->
+  @if (sidebarOpen()) {
+    <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+  }
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.open]="sidebarOpen()">
+    <app-sidebar
+      [theme]="theme()"
+      (setTheme)="setTheme($event)"
+      (closeSidebar)="closeSidebar()" />
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <app-header
+      [sidebarOpen]="sidebarOpen()"
+      (toggleSidebar)="toggleSidebar()" />
+
+    <div class="chat-area">
+      <app-message-list />
+      <app-chat-input />
+    </div>
+  </main>
+
+</div>

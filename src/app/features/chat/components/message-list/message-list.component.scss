@@ -1,0 +1,192 @@
+:host {
+  display: block;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.messages-container {
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem 1rem;
+  scroll-behavior: smooth;
+  background: var(--bg-surface);
+
+  &::-webkit-scrollbar { width: 5px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+    &:hover { background: var(--text-muted); }
+  }
+}
+
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-logo {
+  width: 4rem;
+  height: 4rem;
+  background: radial-gradient(circle at 35% 30%, #c084fc 0%, #8b5cf6 45%, #5b21b6 100%);
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow:
+    0 0 0 1px rgba(196, 181, 253, 0.18),
+    0 0 24px rgba(168, 85, 247, 0.55),
+    0 0 48px rgba(139, 92, 246, 0.35),
+    0 14px 36px rgba(76, 29, 149, 0.35);
+  animation: violetPulse 2.4s ease-in-out infinite;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    color: white;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.28));
+  }
+}
+
+@keyframes violetPulse {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    box-shadow:
+      0 0 0 1px rgba(196, 181, 253, 0.18),
+      0 0 24px rgba(168, 85, 247, 0.55),
+      0 0 48px rgba(139, 92, 246, 0.35),
+      0 14px 36px rgba(76, 29, 149, 0.35);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+      0 0 0 1px rgba(216, 180, 254, 0.32),
+      0 0 30px rgba(192, 132, 252, 0.78),
+      0 0 60px rgba(139, 92, 246, 0.48),
+      0 18px 42px rgba(76, 29, 149, 0.42);
+  }
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.welcome-subtitle {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin: 0 0 2.5rem;
+}
+
+.suggestion-chips {
+  width: 100%;
+  max-width: 540px;
+}
+
+.chip-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chip {
+  padding: 0.875rem 1rem;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  line-height: 1.4;
+  font-weight: 500;
+
+  &:hover {
+    background: color-mix(in srgb, var(--bg-accent) 10%, var(--bg-surface));
+    border-color: #c7d2fe;
+    color: var(--bg-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent);
+  }
+}
+
+.messages-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+}
+
+.error-toast {
+  position: sticky;
+  bottom: 1rem;
+  max-width: 500px;
+  margin: 1rem auto 0;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 0.75rem;
+  color: var(--error-text);
+  font-size: 0.85rem;
+  animation: slideUp 0.25s ease-out;
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  span { flex: 1; }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--error-text);
+    padding: 0.125rem;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+
+    svg { width: 1rem; height: 1rem; }
+
+    &:hover { opacity: 1; }
+  }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

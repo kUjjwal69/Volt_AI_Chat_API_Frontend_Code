@@ -1,0 +1,24 @@
+<header class="header">
+  <button class="menu-btn" (click)="toggleSidebar.emit()" title="Toggle sidebar">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <div class="header-title">
+    @if (activeSession()) {
+      <span class="session-name">{{ activeSession()!.title }}</span>
+    } @else {
+      <span class="default-title">VoltAI</span>
+    }
+  </div>
+
+  <div class="header-actions">
+    <div class="model-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      llama-3.3-70b
+    </div>
+  </div>
+</header>

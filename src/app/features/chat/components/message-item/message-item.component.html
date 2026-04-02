@@ -1,0 +1,40 @@
+<div class="message-wrapper" [class.user-wrapper]="isUser" [class.ai-wrapper]="!isUser">
+
+  @if (!isUser) {
+    <div class="avatar ai-avatar">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+    </div>
+  }
+
+  <div class="message-content-wrapper" [class.user-content]="isUser">
+    <div class="bubble" [class.user-bubble]="isUser" [class.ai-bubble]="!isUser">
+      @if (message().isStreaming && message().content === '') {
+        <div class="typing-indicator">
+          <span></span><span></span><span></span>
+        </div>
+      } @else {
+        <div class="message-text" [innerHTML]="formatContent(message().content)"></div>
+        @if (message().isStreaming) {
+          <span class="cursor-blink">▋</span>
+        }
+      }
+    </div>
+    <div class="message-meta" [class.user-meta]="isUser">
+      <span class="timestamp">{{ formattedTime }}</span>
+      @if (!isUser) {
+        <span class="role-label">VoltAI</span>
+      }
+    </div>
+  </div>
+
+  @if (isUser) {
+    <div class="avatar user-avatar">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+      </svg>
+    </div>
+  }
+
+</div>

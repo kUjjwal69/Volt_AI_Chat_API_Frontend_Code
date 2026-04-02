@@ -1,0 +1,76 @@
+/* Global Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-app: #f4f7fb;
+  --bg-surface: #ffffff;
+  --bg-surface-muted: #f9fafb;
+  --bg-surface-strong: #111827;
+  --bg-surface-strong-hover: #1f2937;
+  --bg-accent: #6366f1;
+  --bg-accent-hover: #4f46e5;
+  --bg-overlay: rgba(0, 0, 0, 0.4);
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --text-inverse: #f9fafb;
+  --border-color: #e5e7eb;
+  --border-strong: #1f2937;
+  --scrollbar-thumb: #d1d5db;
+  --scrollbar-thumb-strong: #374151;
+  --shadow-soft: 0 1px 4px rgba(0, 0, 0, 0.05);
+  --shadow-accent: 0 4px 12px rgba(99, 102, 241, 0.15);
+  --shadow-accent-strong: 0 4px 12px rgba(99, 102, 241, 0.4);
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+  --error-text: #dc2626;
+}
+
+[data-theme='dark'] {
+  --bg-app: #0b1220;
+  --bg-surface: #111827;
+  --bg-surface-muted: #1f2937;
+  --bg-surface-strong: #0f172a;
+  --bg-surface-strong-hover: #1e293b;
+  --bg-accent: #818cf8;
+  --bg-accent-hover: #6366f1;
+  --bg-overlay: rgba(2, 6, 23, 0.7);
+  --text-primary: #f3f4f6;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #ffffff;
+  --border-color: #334155;
+  --border-strong: #1e293b;
+  --scrollbar-thumb: #475569;
+  --scrollbar-thumb-strong: #64748b;
+  --shadow-soft: 0 1px 4px rgba(0, 0, 0, 0.35);
+  --shadow-accent: 0 4px 12px rgba(99, 102, 241, 0.28);
+  --shadow-accent-strong: 0 4px 12px rgba(99, 102, 241, 0.45);
+  --error-bg: rgba(127, 29, 29, 0.2);
+  --error-border: rgba(248, 113, 113, 0.35);
+  --error-text: #fca5a5;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto,
+    Oxygen, Ubuntu, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-app);
+  color: var(--text-primary);
+}
+
+* { scroll-behavior: smooth; }
+
+:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+button, textarea { font-family: inherit; }
